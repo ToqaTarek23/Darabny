@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Darabny</title>
+    <link rel="stylesheet" href="~/css/home.css">
+    <link rel="stylesheet" href="~/css/site.css">
+    <link rel="stylesheet" href="~/css/course-details.css">
+    <link rel="stylesheet" href="~/css/pages-modern.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+    @RenderSection("Styles", required: false)
+</head>
+<body class="@(ViewData["BodyClass"] ?? "home-page")">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-xl py-4">
+        <div class="container">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index" aria-label="Darabny Home">
+                <img src="~/img/logo.png" height="58" width="95" alt="Darabny - Learning Platform">
+                <span class="brand-text">Darabny</span>
+            </a>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-label="toggle">
+                <i class="fas fa-bars text-white fs-1"></i>
+            </button>
+            <div class="collapse navbar-collapse text-center" id="navbar">
+                <ul class="navbar-nav mx-auto gap-3">
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Home" ? "active" : "")"
+                           asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item d-xl-none d-block">
+                        <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Courses" ? "active" : "")"
+                           asp-controller="Home" asp-action="Courses">Courses</a>
+                    </li>
+                    <li class="nav-item d-xl-block d-none">
+                        <div class="nav-link nav-courses cursor-pointer">
+                            <a asp-controller="Home" asp-action="Courses" class="text-white text-decoration-none">Courses</a>
+                            <i class="fas fa-angle-down"></i>
+                            <div class="nav-courses-menu">
+                                <div class="nav-cate-course">
+                                    @if (ViewBag.NavCategories != null)
+                                    {
+                                        @foreach (var cat in ViewBag.NavCategories)
+                                        {
+                                            <a asp-controller="Home" asp-action="Courses"
+                                               asp-route-categoryId="@cat.Id">@cat.Name</a>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Dashboard dropdown: role-based -->
+                    <li class="nav-item d-xl-block d-none">
+                        <div class="nav-link nav-courses cursor-pointer">
+                            <span class="text-white">Dashboard</span>
+                            <i class="fas fa-angle-down"></i>
+                            <div class="nav-courses-menu" style="min-width:210px;">
+                                <div class="nav-cate-course">
+                                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                                    {
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <a asp-controller="Dashboard" asp-action="Admin"
+                                               class="d-flex py-2 px-3 align-items-center gap-2 text-decoration-none">
+                                                <i class="fas fa-shield-halved fa-fw"></i> Admin Dashboard
+                                            </a>
+                                            <a asp-controller="Dashboard" asp-action="Student"
+                                               class="d-flex py-2 px-3 align-items-center gap-2 text-decoration-none">
+                                                <i class="fas fa-user-graduate fa-fw"></i> Student Dashboard
+                                            </a>
+                                        }
+                                        else if (User.IsInRole("Teacher"))
+                                        {
+                                            <a asp-controller="Dashboard" asp-action="Instructor"
+                                               class="d-flex py-2 px-3 align-items-center gap-2 text-decoration-none">
+                                                <i class="fas fa-chalkboard-teacher fa-fw"></i> Instructor Dashboard
+                                            </a>
+                                            <a asp-controller="Dashboard" asp-action="Student"
+                                               class="d-flex py-2 px-3 align-items-center gap-2 text-decoration-none">
+                                                <i class="fas fa-user-graduate fa-fw"></i> Student Dashboard
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-controller="Dashboard" asp-action="Student"
+                                               class="d-flex py-2 px-3 align-items-center gap-2 text-decoration-none">
+                                                <i class="fas fa-user-graduate fa-fw"></i> Student Dashboard
+                                            </a>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a asp-controller="Dashboard" asp-action="Instructor"
+                                           class="d-flex py-2 px-3 align-items-center gap-2 text-decoration-none">
+                                            <i class="fas fa-chalkboard-teacher fa-fw"></i> Become an Instructor
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Mobile: role-based -->
+                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                    {
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item d-xl-none d-block">
+                                <a class="nav-link" asp-controller="Dashboard" asp-action="Admin">Admin Dashboard</a>
+                            </li>
+                            <li class="nav-item d-xl-none d-block">
+                                <a class="nav-link" asp-controller="Dashboard" asp-action="Student">Student Dashboard</a>
+                            </li>
+                        }
+                        else if (User.IsInRole("Teacher"))
+                        {
+                            <li class="nav-item d-xl-none d-block">
+                                <a class="nav-link" asp-controller="Dashboard" asp-action="Instructor">Instructor Dashboard</a>
+                            </li>
+                            <li class="nav-item d-xl-none d-block">
+                                <a class="nav-link" asp-controller="Dashboard" asp-action="Student">Student Dashboard</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item d-xl-none d-block">
+                                <a class="nav-link" asp-controller="Dashboard" asp-action="Student">Student Dashboard</a>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li class="nav-item d-xl-none d-block">
+                            <a class="nav-link" asp-controller="Dashboard" asp-action="Instructor">Become an Instructor</a>
+                        </li>
+                    }
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "About" ? "active" : "")"
+                           asp-controller="Home" asp-action="About">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Contact" ? "active" : "")"
+                           asp-controller="Home" asp-action="ContactUs">Contact</a>
+                    </li>
+                </ul>
+                <div class="ms-auto d-flex align-items-center gap-2 flex-wrap justify-content-center">
+                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                    {
+                        <span class="my-2 my-lg-0 link-btn rounded-5 py-2 px-3">@(User.FindFirst("FullName")?.Value ?? User.Identity!.Name)</span>
+                        <a class="my-2 my-lg-0 link-btn rounded-5 py-2 px-3" asp-controller="Account" asp-action="Logout">Logout</a>
+                    }
+                    else
+                    {
+                        <a class="my-2 my-lg-0 link-btn rounded-5 py-2 px-3" asp-controller="Account" asp-action="Login">Login</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    @RenderBody()
+
+    <footer class="footer-modern" id="contact">
+        <div class="container">
+            <div class="footer-top row g-4 align-items-start">
+                <div class="col-lg-4 col-md-6">
+                    <a class="footer-brand" asp-controller="Home" asp-action="Index">
+                        <img src="~/img/logo.png" alt="Darabny logo">
+                        <span>Darabny</span>
+                    </a>
+                    <p class="footer-lead">Your complete Arabic learning platform for real-world skills and career-ready projects.</p>
+                    <div class="footer-contact-list">
+                        <span><i class="fa-solid fa-envelope"></i> support@darabny.com</span>
+                        <span><i class="fa-solid fa-phone"></i> +20 100 000 0000</span>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-6">
+                    <h5>Platform</h5>
+                    <ul class="footer-links list-unstyled">
+                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a asp-controller="Home" asp-action="Courses">Courses</a></li>
+                        <li><a asp-controller="Home" asp-action="About">About</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 col-6">
+                    <h5>Resources</h5>
+                    <ul class="footer-links list-unstyled">
+                        <li><a asp-controller="Home" asp-action="ContactUs">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h5>Follow Us</h5>
+                    <p class="footer-note">Get updates on new courses, events, and opportunities.</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Darabny. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/auth.js"></script>
+    <script src="~/js/theme-toggle.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

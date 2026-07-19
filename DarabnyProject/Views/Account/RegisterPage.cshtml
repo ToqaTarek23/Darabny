@@ -1,0 +1,113 @@
+@model RegisterViewModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Register";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Darabny</title>
+    <link rel="stylesheet" href="~/css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="con-left">
+            <a asp-controller="Home" asp-action="Index">
+                <img class="Logo" src="~/img/logo.png" alt="Logo">
+            </a>
+            <h1>Get Started Today</h1>
+            <p>Already have an account?</p>
+            <a asp-controller="Account" asp-action="Login"
+               class="Reg-container" style="text-decoration:none;display:inline-block;text-align:center;">
+                Sign In
+            </a>
+        </div>
+
+        <div class="con-right">
+            <h1>Create Account</h1>
+
+            @* Server-side errors *@
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert" style="color:#e53e3e;font-size:.85rem;margin-bottom:.75rem;">
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <div>@error.ErrorMessage</div>
+                    }
+                </div>
+            }
+
+            <form method="post" asp-controller="Account" asp-action="Register">
+                <div class="input-container">
+
+                    <div class="input-group">
+                        <input asp-for="Name" type="text" placeholder="Full Name">
+                        <span asp-validation-for="Name" style="color:#e53e3e;font-size:.78rem;"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <input asp-for="Email" type="email" placeholder="Email Address">
+                        <span asp-validation-for="Email" style="color:#e53e3e;font-size:.78rem;"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <input asp-for="PhoneNumber" type="text" placeholder="Phone Number">
+                        <span asp-validation-for="PhoneNumber" style="color:#e53e3e;font-size:.78rem;"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <input asp-for="Password" type="password" placeholder="Password (at least 6 characters)">
+                        <span asp-validation-for="Password" style="color:#e53e3e;font-size:.78rem;"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <input asp-for="ConfirmPassword" type="password" placeholder="Confirm Password">
+                        <span asp-validation-for="ConfirmPassword" style="color:#e53e3e;font-size:.78rem;"></span>
+                    </div>
+
+                    <div class="role-selection">
+                        <label class="radio-option">
+                            <input type="radio" asp-for="Role" value="0" checked> Student
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" asp-for="Role" value="1"> Teacher
+                        </label>
+                    </div>
+
+                    <div class="terms-container">
+                        <label class="check-item">
+                            <input type="checkbox">
+                            <span class="custom-check"></span>
+                            Send me updates and latest news
+                        </label>
+                        <label class="check-item">
+                            <input type="checkbox" required>
+                            <span class="custom-check"></span>
+                            I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="login-container">Register Now</button>
+
+                    <p>Or sign up with social media</p>
+                    <div class="social">
+                        <button type="button"><i class="fa-brands fa-google"></i></button>
+                        <button type="button"><i class="fa-brands fa-facebook-f"></i></button>
+                        <button type="button"><i class="fa-brands fa-linkedin-in"></i></button>
+                        <button type="button"><i class="fa-brands fa-github"></i></button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+</html>

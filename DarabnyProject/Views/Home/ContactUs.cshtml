@@ -1,0 +1,94 @@
+@model ContactUsViewModel
+@{
+    ViewData["Title"]      = "Contact Us";
+    ViewData["ActivePage"] = "Contact";
+    Layout = "_CustomerLayout";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/home.css">
+}
+
+<section class="contact-section section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="panel" style="padding:2.5rem;">
+                    <div class="courses-head mb-4">
+                        <span class="courses-kicker">Get in Touch</span>
+                        <h2>Contact Us</h2>
+                        <p>Have a question or suggestion? We'd love to hear from you.</p>
+                    </div>
+
+                    @if (TempData["success"] != null)
+                    {
+                        <div class="alert alert-success d-flex align-items-center gap-2 mb-3">
+                            <i class="fas fa-circle-check"></i> @TempData["success"]
+                        </div>
+                    }
+
+                    <form method="post" asp-controller="Home" asp-action="ContactUs">
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <label class="form-label fw-semibold">
+                                    Name <span class="text-danger">*</span>
+                                </label>
+                                <input asp-for="Name" class="form-control" placeholder="Your full name">
+                                <span asp-validation-for="Name" class="text-danger small"></span>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label fw-semibold">
+                                    Email <span class="text-danger">*</span>
+                                </label>
+                                <input asp-for="Email" class="form-control" placeholder="your@email.com">
+                                <span asp-validation-for="Email" class="text-danger small"></span>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">Subject</label>
+                                <input asp-for="Subject" class="form-control" placeholder="What is this about?">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">
+                                    Message <span class="text-danger">*</span>
+                                </label>
+                                <textarea asp-for="Message" class="form-control" rows="5"
+                                          placeholder="Write your message here..."></textarea>
+                                <span asp-validation-for="Message" class="text-danger small"></span>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn-primary-modern">
+                                    <i class="fas fa-paper-plane me-2"></i>Send Message
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-4 mt-4 mt-lg-0">
+                <div class="panel" style="padding:2rem;">
+                    <h4 class="mb-3">Contact Info</h4>
+                    <ul class="list-unstyled" style="line-height:2.2;">
+                        <li>
+                            <i class="fas fa-envelope me-2" style="color:#2563eb"></i>
+                            support@darabny.com
+                        </li>
+                        <li>
+                            <i class="fas fa-phone me-2" style="color:#2563eb"></i>
+                            +20 100 000 0000
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt me-2" style="color:#2563eb"></i>
+                            Cairo, Egypt
+                        </li>
+                    </ul>
+                    <div class="footer-socials mt-3">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

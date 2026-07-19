@@ -1,0 +1,96 @@
+@{
+    ViewData["Title"] = "Instructor";
+    ViewData["ActivePage"] = "Instructor";
+    ViewData["BodyClass"] = "instructor-theme";
+    Layout = "_CustomerLayout";
+}
+
+<section class="section">
+    <div class="panel instructor-panel">
+
+        <!-- Roadmap Steps -->
+        <div class="mentor-roadmap">
+            <article class="road-step">
+                <span>01</span>
+                <h3>Plan Curriculum</h3>
+                <p>Define learning goals, modules, and project outcomes for your students.</p>
+            </article>
+            <article class="road-step">
+                <span>02</span>
+                <h3>Record Lessons</h3>
+                <p>Create short, focused video lessons with practical, real-world examples.</p>
+            </article>
+            <article class="road-step">
+                <span>03</span>
+                <h3>Publish &amp; Improve</h3>
+                <p>Launch your course on Darabny and iterate based on learner feedback.</p>
+            </article>
+        </div>
+
+        <div class="grid-2 mt-3">
+
+            <!-- Instructor Tracks -->
+            <article class="info-card">
+                <h3>Instructor Tracks</h3>
+                <div class="track-list">
+                    <div>
+                        <strong>Starter</strong>
+                        <p>First course launch with full onboarding support from our team.</p>
+                    </div>
+                    <div>
+                        <strong>Growth</strong>
+                        <p>Audience growth tips, content optimization and analytics access.</p>
+                    </div>
+                    <div>
+                        <strong>Pro Mentor</strong>
+                        <p>Advanced mentoring features and premium badge visibility on your profile.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Requirements -->
+            <article class="info-card">
+                <h3>Instructor Requirements</h3>
+                <ul style="line-height:2;">
+                    <li>Practical experience in your chosen topic area</li>
+                    <li>Clear communication in Arabic or English</li>
+                    <li>Project-based, hands-on teaching approach</li>
+                    <li>Commitment to supporting enrolled students</li>
+                    <li>Ability to record decent quality video content</li>
+                </ul>
+                <div class="contact-actions mt-3">
+                    <a asp-controller="Account" asp-action="Register"
+                       class="btn-primary-modern text-decoration-none">
+                        Apply as Instructor
+                    </a>
+                    <a asp-controller="Home" asp-action="ContactUs"
+                       class="btn-outline-modern text-decoration-none">
+                        Download Guide
+                    </a>
+                </div>
+            </article>
+
+        </div>
+
+        <!-- Stats banner -->
+        <div class="metric-row mt-3">
+            <article class="metric">
+                <h4>10K+</h4>
+                <p>Active Students</p>
+            </article>
+            <article class="metric">
+                <h4>50+</h4>
+                <p>Expert Instructors</p>
+            </article>
+            <article class="metric">
+                <h4>200+</h4>
+                <p>Courses Published</p>
+            </article>
+            <article class="metric">
+                <h4>4.8★</h4>
+                <p>Avg. Rating</p>
+            </article>
+        </div>
+
+    </div>
+</section>

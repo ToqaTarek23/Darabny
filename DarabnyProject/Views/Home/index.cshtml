@@ -1,0 +1,300 @@
+@{
+    ViewData["Title"] = "Home";
+    ViewData["ActivePage"] = "Home";
+    ViewData["BodyClass"] = "home-page";
+    Layout = "_CustomerLayout";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/home.css">
+}
+
+<!-- Landing Section -->
+    <section class="landing hero-section pt-5 pb-5">
+        <div class="container">
+            <div class="row justify-content-lg-between text-lg-start text-center justify-content-center">
+                <div class="col-12 col-lg-6 mb-3 order-2 order-lg-1">
+                    <div class="landing-image">
+                        <img src="~/img/photo1.jpg" alt="Darabny Learning Platform" style="max-width: 100%; height: auto; border-radius: 15px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);">
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 mb-3 order-1 order-lg-2">
+                    <div class="landing-info text-white">
+                        <span class="hero-kicker">Trusted Arabic Learning Hub</span>
+                        <h1 class="fw-bold lh-base mb-4">
+                            Darabny Platform <br>Your Path to Learning & Development
+                        </h1>
+                        <p>
+                            Join thousands of learners and gain new skills through professional courses
+                            in programming, design, digital marketing and more. Start your learning journey now!
+                        </p>
+                        <div class="hero-actions d-flex flex-wrap gap-2 justify-content-lg-start justify-content-center mb-3">
+                            <a asp-controller="Home" asp-action="Courses" class="hero-main-btn">Start Learning</a>
+                            <a asp-controller="Account" asp-action="Register" class="hero-outline-btn">Become an Instructor</a>
+                        </div>
+                        <form action="#" method="get" class="search-form d-flex mx-lg-0 mx-auto align-items-center px-2">
+                            <input type="text" placeholder="Search for the course you want" name="query">
+                            <button type="submit" class="d-inline-block px-5 py-2 fw-bold secondry-back primary-back-hover text-white rounded-5 border-0">Search</button>
+                        </form>
+                        <div class="hero-trust mt-3 d-flex flex-wrap gap-3 justify-content-lg-start justify-content-center">
+                            <span><i class="fa-solid fa-circle-check"></i> Verified Instructors</span>
+                            <span><i class="fa-solid fa-video"></i> 300+ Video Lessons</span>
+                            <span><i class="fa-solid fa-certificate"></i> Completion Certificates</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-strip" aria-label="Platform statistics">
+        <div class="container">
+            <div class="stats-grid">
+                <article class="stat-item">
+                    <h3>12K+</h3>
+                    <p>Active Learners</p>
+                </article>
+                <article class="stat-item">
+                    <h3>340+</h3>
+                    <p>Interactive Courses</p>
+                </article>
+                <article class="stat-item">
+                    <h3>45+</h3>
+                    <p>Expert Instructors</p>
+                </article>
+                <article class="stat-item">
+                    <h3>91%</h3>
+                    <p>Course Completion Rate</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Courses Section -->
+    <div class="course" id="my-courses">
+        <h2>Featured Courses</h2>
+
+        <div class="course-content">
+
+            <a asp-controller="Home" asp-action="CourseDetails" class="course-card">
+                <img src="https://img.youtube.com/vi/nGKd4yTP3M8/maxresdefault.jpg" alt="course">
+                <h3>Game Dev</h3>
+                <p class="course-level">Beginner</p>
+                <p class="price">Free</p>
+                <p class="rating">⭐ 4.8</p>
+                <span class="course-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+
+            <a asp-controller="Home" asp-action="CourseDetails" class="course-card">
+                <img src="https://img.youtube.com/vi/UB1O30fR-EE/maxresdefault.jpg" alt="course">
+                <h3>HTML for Beginners</h3>
+                <p class="course-level">Beginner</p>
+                <p class="price">EGP 50</p>
+                <p class="rating">⭐ 4.7</p>
+                <span class="course-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+
+            <a asp-controller="Home" asp-action="CourseDetails" class="course-card">
+                <img src="https://img.youtube.com/vi/qz0aGYrrlhU/maxresdefault.jpg" alt="course">
+                <h3>HTML in 1 Hour</h3>
+                <p class="course-level">Fast Track</p>
+                <p class="price">Free</p>
+                <p class="rating">⭐ 4.9</p>
+                <span class="course-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+
+            <a asp-controller="Home" asp-action="CourseDetails" class="course-card">
+                <img src="https://img.youtube.com/vi/jS4aFq5-91M/maxresdefault.jpg" alt="course">
+                <h3>JavaScript Course</h3>
+                <p class="course-level">Intermediate</p>
+                <p class="price">EGP 400</p>
+                <p class="rating">⭐ 4.6</p>
+                <span class="course-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+        </div>
+
+        <a asp-controller="Home" asp-action="Courses" class="course-btn">All Courses</a>
+    </div>
+
+
+
+    <!-- Categories Section -->
+    <section class="py-5 bg-light" id="categories">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold mb-3 secondry-clr">Browse by Category</h2>
+                <p class="light-text">Choose the field that suits your interests</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="category-box text-center">
+                        <i class="fa-solid fa-code primary-clr" style="font-size: 50px;"></i>
+                        <h5 class="fw-bold mt-3 mb-2 secondry-clr">Programming</h5>
+                        <p class="light-text mb-3">150+ Courses</p>
+                        <a asp-controller="Home" asp-action="Courses" class="btn primary-back text-white rounded-5 px-4">Explore</a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="category-box text-center">
+                        <i class="fa-solid fa-palette primary-clr" style="font-size: 50px;"></i>
+                        <h5 class="fw-bold mt-3 mb-2 secondry-clr">Design</h5>
+                        <p class="light-text mb-3">80+ Courses</p>
+                        <a asp-controller="Home" asp-action="Courses" class="btn primary-back text-white rounded-5 px-4">Explore</a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="category-box text-center">
+                        <i class="fa-solid fa-database primary-clr" style="font-size: 50px;"></i>
+                        <h5 class="fw-bold mt-3 mb-2 secondry-clr">Databases</h5>
+                        <p class="light-text mb-3">45+ Courses</p>
+                        <a asp-controller="Home" asp-action="Courses" class="btn primary-back text-white rounded-5 px-4">Explore</a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="category-box text-center">
+                        <i class="fa-solid fa-bullhorn primary-clr" style="font-size: 50px;"></i>
+                        <h5 class="fw-bold mt-3 mb-2 secondry-clr">Marketing</h5>
+                        <p class="light-text mb-3">60+ Courses</p>
+                        <a asp-controller="Home" asp-action="Courses" class="btn primary-back text-white rounded-5 px-4">Explore</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="extra" id="about">
+        <h2 class="title">An Arabic Platform for Learning and Watching Courses</h2>
+        <p class="sub-title">Learn, teach, start and earn your first income with us now</p>
+
+        <div class="extra-container">
+
+            <div class="extra-card">
+                <div class="earn">
+                    <i class="fa-solid fa-dollar-sign"></i>
+                </div>
+                <h3>Earn</h3>
+                <p>Generate income through teaching opportunities or by improving your skills for job prospects.</p>
+            </div>
+            <div class="extra-card">
+                <div class="learn">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h3>Learn</h3>
+                <p>Choose from many courses to develop and guide yourself—start your journey now.</p>
+            </div>
+
+            <div class="extra-card">
+                <div class="teach">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                </div>
+                <h3>Teach</h3>
+                <p>Create your courses and share your expertise with thousands of students across the Arab world.</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="testimonials reveal-on-scroll" aria-label="Student testimonials">
+        <div class="container">
+            <div class="section-head text-center">
+                <h2>What Our Learners Say</h2>
+                <p>Real feedback from students who advanced their careers with Darabny.</p>
+            </div>
+            <div class="testimonial-grid">
+                <article class="testimonial-card">
+                    <div class="testimonial-top">
+                        <div class="avatar">SA</div>
+                        <div>
+                            <h3>Sara Ahmed</h3>
+                            <span>Frontend Developer</span>
+                        </div>
+                    </div>
+                    <p>"The JavaScript learning path was clear and practical. I built my first portfolio and got interviews in two months."</p>
+                    <div class="stars">★★★★★</div>
+                </article>
+
+                <article class="testimonial-card">
+                    <div class="testimonial-top">
+                        <div class="avatar">MK</div>
+                        <div>
+                            <h3>Mostafa Khaled</h3>
+                            <span>UI/UX Freelancer</span>
+                        </div>
+                    </div>
+                    <p>"The mentors and project-based assignments helped me confidently deliver client work. The platform is worth every hour."</p>
+                    <div class="stars">★★★★★</div>
+                </article>
+
+                <article class="testimonial-card">
+                    <div class="testimonial-top">
+                        <div class="avatar">LN</div>
+                        <div>
+                            <h3>Laila Nasser</h3>
+                            <span>Digital Marketer</span>
+                        </div>
+                    </div>
+                    <p>"I joined with zero marketing background. Now I run ad campaigns and report measurable growth for my team."</p>
+                    <div class="stars">★★★★☆</div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq reveal-on-scroll" aria-label="Frequently asked questions">
+        <div class="container">
+            <div class="section-head text-center">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need before starting your learning journey.</p>
+            </div>
+            <div class="faq-list">
+                <article class="faq-item active">
+                    <button class="faq-question" type="button" aria-expanded="true">
+                        <span>Can I start as a complete beginner?</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes. Many tracks are designed for beginners with step-by-step progress from fundamentals to projects.</p>
+                    </div>
+                </article>
+
+                <article class="faq-item">
+                    <button class="faq-question" type="button" aria-expanded="false">
+                        <span>Will I receive a certificate?</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes. You receive a completion certificate after finishing required lessons and passing course assessments.</p>
+                    </div>
+                </article>
+
+                <article class="faq-item">
+                    <button class="faq-question" type="button" aria-expanded="false">
+                        <span>Can I become an instructor on Darabny?</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely. Register as an instructor, submit your course outline, and our team will help you publish it.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="home-cta reveal-on-scroll">
+        <div class="container">
+            <div class="home-cta-box">
+                <h2>Ready to build your future skills?</h2>
+                <p>Join Darabny today and learn with experts through practical and career-focused content.</p>
+                <div class="home-cta-actions">
+                    <a asp-controller="Account" asp-action="Register" class="home-cta-primary">Create Free Account</a>
+                    <a asp-controller="Home" asp-action="Courses" class="home-cta-secondary">Explore Courses</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <script src="~/js/main.js"></script>

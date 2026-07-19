@@ -1,0 +1,90 @@
+@model LoginViewModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Login";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Darabny</title>
+    <link rel="stylesheet" href="~/css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="con-left">
+            <a asp-controller="Home" asp-action="Index">
+                <img class="Logo" src="~/img/logo.png" alt="Logo">
+            </a>
+
+            <h1>Welcome Back</h1>
+            <p>Don't have an account?</p>
+            <a asp-controller="Account" asp-action="Register" class="Reg-container" style="text-decoration: none; display: inline-block; text-align: center;">Create Account</a>
+        </div>
+        <div class="con-right">
+
+            <h1>Sign In</h1>
+
+            @* Server-side errors *@
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert" style="color:#e53e3e;font-size:.85rem;margin-bottom:.75rem;">
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <div>@error.ErrorMessage</div>
+                    }
+                </div>
+            }
+
+            <form method="post" asp-controller="Account" asp-action="Login">
+                <div class="input-container">
+                    <div class="input-group">
+                        <input asp-for="Email" type="email" placeholder="Email Address">
+                        <span asp-validation-for="Email" style="color:#e53e3e;font-size:.78rem;"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <input asp-for="Password" type="password" placeholder="Password">
+                        <span asp-validation-for="Password" style="color:#e53e3e;font-size:.78rem;"></span>
+                    </div>
+
+                    @* Visual only, restored to match the old look — the account's real role
+                       already lives in the database and is what actually controls access,
+                       these radios don't send anything to the server. *@
+                    <div class="role-selection">
+                        <label class="radio-option">
+                            <input type="radio" name="roleDisplay" value="student" checked>
+                            Student
+                        </label>
+
+                        <label class="radio-option">
+                            <input type="radio" name="roleDisplay" value="teacher">
+                            Teacher
+                        </label>
+
+                        <label class="radio-option">
+                            <input type="radio" name="roleDisplay" value="admin">
+                            Admin
+                        </label>
+                    </div>
+
+                    <a href="#">Forgot Password?</a>
+                    <button type="submit" class="login-container">Sign In</button>
+                    <p>Or sign up with social media</p>
+                    <div class="social">
+                        <button type="button"><i class="fa-brands fa-google"></i></button>
+                        <button type="button"><i class="fa-brands fa-facebook-f"></i></button>
+                        <button type="button"><i class="fa-brands fa-linkedin-in"></i></button>
+                        <button type="button"><i class="fa-brands fa-github"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

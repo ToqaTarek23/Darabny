@@ -1,0 +1,298 @@
+@model StudentDashboardViewModel
+@{
+    ViewData["Title"]      = "Student Dashboard";
+    ViewData["ActivePage"] = "Dashboard";
+    ViewData["BodyClass"]  = "dashboard-theme";
+    Layout = "_CustomerLayout";
+}
+
+<section class="section">
+    <div class="panel dashboard-shell">
+
+        <!-- Sidebar -->
+        <aside class="dash-side">
+            <div class="student-card">
+                <div class="student-avatar">@Model.StudentInitials</div>
+                <h3>@Model.StudentName</h3>
+                <p>Darabny Learner</p>
+            </div>
+            <ul class="dash-menu list-unstyled mt-3" id="dashTabs">
+                <li class="active" data-tab="overview">
+                    <i class="fas fa-chart-pie me-2"></i>Overview
+                </li>
+                <li data-tab="mycourses">
+                    <i class="fas fa-book-open me-2"></i>My Courses
+                    <span class="dash-badge">@Model.TotalEnrolled</span>
+                </li>
+                <li data-tab="favorites">
+                    <i class="fas fa-heart me-2"></i>Favourites
+                    <span class="dash-badge">@Model.TotalFavorites</span>
+                </li>
+                <li data-tab="certificates">
+                    <i class="fas fa-certificate me-2"></i>Certificates
+                    <span class="dash-badge">@Model.Certificates.Count</span>
+                </li>
+                <li data-tab="settings">
+                    <i class="fas fa-cog me-2"></i>Settings
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main -->
+        <div class="dash-main">
+
+            <!-- Overview -->
+            <div class="tab-panel" id="tab-overview">
+                <div class="metric-row">
+                    <article class="metric">
+                        <h4>@Model.TotalEnrolled</h4><p>Courses Enrolled</p>
+                    </article>
+                    <article class="metric">
+                        <h4>@Model.InProgress</h4><p>In Progress</p>
+                    </article>
+                    <article class="metric">
+                        <h4>@Model.Completed</h4><p>Completed</p>
+                    </article>
+                    <article class="metric">
+                        <h4>@Model.TotalFavorites</h4><p>Favourites</p>
+                    </article>
+                </div>
+                <div class="grid-2">
+                    <article class="info-card">
+                        <h3>My Course Progress</h3>
+                        @if (!Model.Enrollments.Any())
+                        {
+                            <p class="text-muted">No enrolled courses yet.</p>
+                            <a asp-controller="Home" asp-action="Courses"
+                               class="btn-primary-modern d-inline-block mt-2 text-decoration-none">
+                                Browse Courses
+                            </a>
+                        }
+                        else
+                        {
+                            @foreach (var e in Model.Enrollments.Take(4))
+                            {
+                                var pct = Model.CourseProgressMap.ContainsKey(e.CourseId)
+                                    ? Model.CourseProgressMap[e.CourseId]
+                                    : (e.Status == DarabnyProject.Enums.EnrollmentStatus.Completed ? 100 : 0);
+                                <div class="progress-box">
+                                    <div class="progress-title">
+                                        <span>@(e.Course?.Name ?? "Course")</span>
+                                        <span>@pct%</span>
+                                    </div>
+                                    <div class="progress-track">
+                                        <div class="progress-fill" style="width:@pct%"></div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </article>
+                    <article class="info-card">
+                        <h3>Quick Links</h3>
+                        <ul class="list-unstyled" style="line-height:2.1;">
+                            <li><i class="fas fa-search me-2" style="color:#2563eb"></i>
+                                <a asp-controller="Home" asp-action="Courses">Browse all courses</a></li>
+                            <li><i class="fas fa-user me-2" style="color:#2563eb"></i>
+                                <a asp-controller="Dashboard" asp-action="Instructor">Become an Instructor</a></li>
+                            <li><i class="fas fa-envelope me-2" style="color:#2563eb"></i>
+                                <a asp-controller="Home" asp-action="ContactUs">Contact Support</a></li>
+                            <li><i class="fas fa-info-circle me-2" style="color:#2563eb"></i>
+                                <a asp-controller="Home" asp-action="About">About Darabny</a></li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+
+            <!-- My Courses -->
+            <div class="tab-panel" id="tab-mycourses" style="display:none;">
+                <article class="info-card">
+                    <h3>My Enrolled Courses <span class="dash-badge ms-2">@Model.TotalEnrolled</span></h3>
+                    @if (!Model.Enrollments.Any())
+                    {
+                        <p class="text-muted mt-2">You haven't enrolled in any courses yet.</p>
+                        <a asp-controller="Home" asp-action="Courses"
+                           class="btn-primary-modern d-inline-block mt-2 text-decoration-none">Find a Course</a>
+                    }
+                    else
+                    {
+                        <div class="courses-grid mt-3">
+                            @foreach (var e in Model.Enrollments)
+                            {
+                                <article class="course-feature" style="padding:1rem;">
+                                    <div class="course-cover-placeholder" style="min-height:100px;border-radius:8px;">
+                                        <i class="fa-solid fa-book-open fa-xl"></i>
+                                    </div>
+                                    <h3 style="font-size:1rem;margin:.6rem 0 .3rem;">@(e.Course?.Name ?? "-")</h3>
+                                    <div class="course-meta">
+                                        <span>@(e.Course?.Category?.Name ?? "-")</span>
+                                        <span class="@(e.Status == DarabnyProject.Enums.EnrollmentStatus.Completed ? "text-success" : "text-warning")">
+                                            @e.Status
+                                        </span>
+                                    </div>
+                                    <a asp-controller="Home" asp-action="CourseDetails"
+                                       asp-route-id="@e.CourseId"
+                                       class="btn-outline-modern d-block text-center text-decoration-none mt-2">
+                                        Continue
+                                    </a>
+                                    <form method="post" asp-controller="Enrollment" asp-action="Toggle" class="mt-1">
+                                        <input type="hidden" name="courseId" value="@e.CourseId" />
+                                        <button type="submit" class="btn-outline-modern d-block w-100 text-center" style="font-size:.78rem;color:#dc2626;border-color:rgba(220,38,38,.3);">
+                                            Unenroll
+                                        </button>
+                                    </form>
+                                </article>
+                            }
+                        </div>
+                    }
+                </article>
+            </div>
+
+            <!-- Favourites -->
+            <div class="tab-panel" id="tab-favorites" style="display:none;">
+                <article class="info-card">
+                    <h3>My Favourites <span class="dash-badge ms-2">@Model.TotalFavorites</span></h3>
+                    @if (!Model.Favorites.Any())
+                    {
+                        <p class="text-muted mt-2">No favourites yet.</p>
+                        <a asp-controller="Home" asp-action="Courses"
+                           class="btn-primary-modern d-inline-block mt-2 text-decoration-none">Explore Courses</a>
+                    }
+                    else
+                    {
+                        <div class="courses-grid mt-3">
+                            @foreach (var f in Model.Favorites)
+                            {
+                                <article class="course-feature" style="padding:1rem;">
+                                    <div class="course-cover-placeholder" style="min-height:100px;border-radius:8px;">
+                                        <i class="fa-solid fa-heart fa-xl" style="color:#e05;opacity:.5"></i>
+                                    </div>
+                                    <h3 style="font-size:1rem;margin:.6rem 0 .3rem;">@(f.Course?.Name ?? "-")</h3>
+                                    <div class="course-meta">
+                                        <span>@(f.Course?.Category?.Name ?? "-")</span>
+                                    </div>
+                                    <a asp-controller="Home" asp-action="CourseDetails"
+                                       asp-route-id="@f.CourseId"
+                                       class="btn-primary-modern d-block text-center text-decoration-none mt-2">
+                                        View Details
+                                    </a>
+                                    <form method="post" asp-controller="Favorite" asp-action="Toggle" class="mt-1">
+                                        <input type="hidden" name="courseId" value="@f.CourseId" />
+                                        <button type="submit" class="btn-outline-modern d-block w-100 text-center" style="font-size:.78rem;color:#dc2626;border-color:rgba(220,38,38,.3);">
+                                            Remove
+                                        </button>
+                                    </form>
+                                </article>
+                            }
+                        </div>
+                    }
+                </article>
+            </div>
+
+            <!-- Certificates -->
+            <div class="tab-panel" id="tab-certificates" style="display:none;">
+                <article class="info-card">
+                    <h3>My Certificates <span class="dash-badge ms-2">@Model.Certificates.Count</span></h3>
+                    @if (!Model.Certificates.Any())
+                    {
+                        <p class="text-muted mt-2">Complete a course to earn your first certificate.</p>
+                    }
+                    else
+                    {
+                        <div class="row g-3 mt-1">
+                            @foreach (var cert in Model.Certificates)
+                            {
+                                <div class="col-md-6">
+                                    <div class="cert-card">
+                                        <div class="cert-icon">
+                                            <i class="fas fa-certificate fa-2x" style="color:#f59e0b"></i>
+                                        </div>
+                                        <div class="cert-body">
+                                            <h5>@cert.Name</h5>
+                                            <p>@(cert.Course?.Name ?? "-")</p>
+                                            <small class="text-muted">@cert.IssuedAt.ToString("dd MMM yyyy")</small>
+                                            @if (!string.IsNullOrWhiteSpace(cert.CertificateUrl))
+                                            {
+                                                <br />
+                                                <a href="@cert.CertificateUrl" target="_blank"
+                                                   class="btn-outline-modern d-inline-block mt-2 text-decoration-none"
+                                                   style="font-size:.8rem;">View Certificate</a>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                </article>
+            </div>
+
+            <!-- Settings -->
+            <div class="tab-panel" id="tab-settings" style="display:none;">
+                <article class="info-card">
+                    <h3>Profile Settings</h3>
+                    <div class="row g-3 mt-1">
+                        <div class="col-sm-6">
+                            <label class="form-label fw-semibold">Full Name</label>
+                            <p class="form-control-plaintext">@Model.StudentName</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label fw-semibold">Email</label>
+                            <p class="form-control-plaintext">@(Model.StudentEmail ?? "-")</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label fw-semibold">Member Since</label>
+                            <p class="form-control-plaintext">@Model.MemberSince.ToString("dd MMM yyyy")</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label fw-semibold">Status</label>
+                            <p class="form-control-plaintext @(Model.IsActive ? "text-success" : "text-danger")">
+                                @(Model.IsActive ? "Active" : "Inactive")
+                            </p>
+                        </div>
+                        @if (!string.IsNullOrWhiteSpace(Model.StudentBio))
+                        {
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">Bio</label>
+                                <p class="form-control-plaintext">@Model.StudentBio</p>
+                            </div>
+                        }
+                    </div>
+                    <div class="mt-3">
+                        <button class="btn-outline-modern" type="button"
+                                onclick="if(confirm('Log out?')){localStorage.removeItem('currentUser');window.location.href='/';}">
+                            <i class="fas fa-sign-out-alt me-2"></i>Logout
+                        </button>
+                    </div>
+                </article>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    .dash-menu li { display:flex;align-items:center;padding:.55rem .9rem;border-radius:8px;cursor:pointer;font-size:.9rem;color:rgba(30,64,120,.7);transition:background .15s; }
+    .dash-menu li:hover { background:rgba(37,99,235,.07); }
+    .dash-menu li.active { background:rgba(37,99,235,.12);color:#2563eb;font-weight:700; }
+    .dash-badge { margin-left:auto;background:rgba(37,99,235,.12);color:#2563eb;border-radius:999px;font-size:.72rem;padding:.1rem .5rem;font-weight:700;min-width:22px;text-align:center; }
+    .student-avatar { width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#1e4f97,#47a2cc);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;margin:0 auto 10px; }
+    .student-card h3 { text-align:center;margin:0;font-size:1rem; }
+    .student-card p  { text-align:center;margin:4px 0 0;opacity:.6;font-size:.85rem; }
+    .cert-card { display:flex;align-items:flex-start;gap:1rem;border:1.5px solid rgba(245,158,11,.3);border-radius:12px;padding:1rem;background:rgba(255,251,235,.6); }
+    .cert-body h5 { margin:0;font-size:.95rem;color:#92400e; }
+    .cert-body p  { margin:4px 0 0;font-size:.85rem;opacity:.7; }
+</style>
+
+@section Scripts {
+<script>
+    document.querySelectorAll('#dashTabs li').forEach(function(tab) {
+        tab.addEventListener('click', function() {
+            document.querySelectorAll('#dashTabs li').forEach(function(t){ t.classList.remove('active'); });
+            document.querySelectorAll('.tab-panel').forEach(function(p){ p.style.display='none'; });
+            tab.classList.add('active');
+            var panel = document.getElementById('tab-' + tab.dataset.tab);
+            if (panel) panel.style.display = '';
+        });
+    });
+</script>
+}

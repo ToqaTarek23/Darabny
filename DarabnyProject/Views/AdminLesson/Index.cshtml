@@ -1,0 +1,47 @@
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model List<DarabnyProject.Models.Lesson>
+@section breadCrumb {
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Lessons</h4>
+                <div class="ms-auto text-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                            <li class="breadcrumb-item active">Lessons</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="mb-3">
+    <a class="btn btn-primary" href="/admin/lessons/create">+ Add New Lesson</a>
+</div>
+<h5 class="card-title">Lesson List</h5>
+<div class="table-responsive">
+    <table id="zero_config" class="table table-striped table-bordered">
+        <thead>
+            <tr><th>Id</th><th>Lesson</th><th>Chapter</th><th>Course</th><th></th></tr>
+        </thead>
+        <tbody>
+            @foreach (var l in Model)
+            {
+                <tr>
+                    <td>@l.Id</td>
+                    <td>@l.Name</td>
+                    <td>@(l.Chapter?.Name ?? "-")</td>
+                    <td>@(l.Chapter?.Course?.Name ?? "-")</td>
+                    <td>
+                        <a class="btn btn-success" href="/admin/lessons/edit/@l.Id">Edit</a>
+                        <a class="btn btn-danger"  href="/admin/lessons/delete/@l.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

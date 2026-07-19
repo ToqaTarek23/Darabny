@@ -1,0 +1,153 @@
+@model CourseFormViewModel
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@section breadCrumb {
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Edit Course</h4>
+                <div class="ms-auto text-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/admin/courses">Courses</a></li>
+                            <li class="breadcrumb-item active">Edit</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<form method="post" action="/admin/courses/edit">
+    <input type="hidden" asp-for="Id" />
+    <div class="card-body">
+
+        <div class="form-group row mb-3">
+            <label class="col-sm-3 text-end col-form-label">Title <span class="text-danger">*</span></label>
+            <div class="col-sm-9">
+                <input asp-for="Name" class="form-control">
+                <span asp-validation-for="Name" class="text-danger small"></span>
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label class="col-sm-3 text-end col-form-label">Category <span class="text-danger">*</span></label>
+            <div class="col-sm-9">
+                <select asp-for="CategoryId" class="form-select">
+                    @foreach (var cat in Model.Categories)
+                    {
+                        if (cat.Id == Model.CategoryId)
+                        {
+                            <option value="@cat.Id" selected="selected">@cat.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@cat.Id">@cat.Name</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger small"></span>
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label class="col-sm-3 text-end col-form-label">Instructor</label>
+            <div class="col-sm-9">
+                <select asp-for="InstructorId" class="form-select">
+                    <option value="0">-- No Instructor --</option>
+                    @foreach (var inst in Model.Instructors)
+                    {
+                        if (inst.Id == Model.InstructorId)
+                        {
+                            <option value="@inst.Id" selected="selected">@inst.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@inst.Id">@inst.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label class="col-sm-3 text-end col-form-label">Level</label>
+            <div class="col-sm-9">
+                <select asp-for="Level" class="form-select">
+                    @{
+                        var levels = new[] { (0, "Beginner"), (1, "Intermediate"), (2, "Advanced") };
+                        foreach (var (lv, ll) in levels)
+                        {
+                            if ((int)Model.Level == lv)
+                            {
+                                <option value="@lv" selected="selected">@ll</option>
+                            }
+                            else
+                            {
+                                <option value="@lv">@ll</option>
+                            }
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label class="col-sm-3 text-end col-form-label">Language</label>
+            <div class="col-sm-9">
+                <input asp-for="Language" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label class="col-sm-3 text-end col-form-label">Price (EGP)</label>
+            <div class="col-sm-9">
+                <input asp-for="Price" class="form-control" type="number" min="0" step="1">
+                <span asp-validation-for="Price" class="text-danger small"></span>
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label class="col-sm-3 text-end col-form-label">Length (hours)</label>
+            <div class="col-sm-9">
+                <input asp-for="CourseLength" class="form-control" type="number" min="0" step="1">
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label class="col-sm-3 text-end col-form-label">Description <span class="text-danger">*</span></label>
+            <div class="col-sm-9">
+                <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Description" class="text-danger small"></span>
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label class="col-sm-3 text-end col-form-label">
+                Requirements<br><small class="text-muted">(one per line)</small>
+            </label>
+            <div class="col-sm-9">
+                <textarea asp-for="RequirementsText" class="form-control" rows="3"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label class="col-sm-3 text-end col-form-label">
+                What Will We Learn<br><small class="text-muted">(one per line)</small>
+            </label>
+            <div class="col-sm-9">
+                <textarea asp-for="LearnText" class="form-control" rows="3"></textarea>
+            </div>
+        </div>
+
+    </div>
+    <div class="border-top">
+        <div class="card-body d-flex gap-2">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-floppy-disk me-1"></i> Save Changes
+            </button>
+            <a href="/admin/courses" class="btn btn-secondary">Cancel</a>
+        </div>
+    </div>
+</form>

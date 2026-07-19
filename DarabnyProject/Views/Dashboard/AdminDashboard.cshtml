@@ -1,0 +1,444 @@
+@using DarabnyProject.Enums
+@using DarabnyProject.Models
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    ViewData["ActivePage"] = "Admin";
+    Layout = "_AdminLayout";
+
+    var courses    = ViewBag.Courses    as List<Course>   ?? new();
+    var categories = ViewBag.Categories as List<Category> ?? new();
+}
+
+<section class="section">
+<div class="panel admin-panel">
+
+    <div class="admin-hero">
+        <div>
+            <span class="courses-kicker">Admin Control Center</span>
+            <h2>Manage Content</h2>
+            <p>Add, edit, and delete courses, categories, chapters and lessons.</p>
+        </div>
+        <div class="admin-hero-chip-row">
+            <span class="admin-hero-chip"><i class="fa-solid fa-bolt"></i> Fast updates</span>
+            <span class="admin-hero-chip"><i class="fa-solid fa-shield-halved"></i> Admin only</span>
+            <span class="admin-hero-chip"><i class="fa-solid fa-book-open"></i> Live catalog sync</span>
+        </div>
+    </div>
+
+    <div class="admin-stats">
+        <article class="admin-stat-card"><span>@courses.Count</span><p>Courses</p></article>
+        <article class="admin-stat-card"><span>@categories.Count</span><p>Categories</p></article>
+    </div>
+
+    <div class="admin-quick-nav">
+        <a href="#courseSection"   class="admin-qnav-btn"><i class="fa-solid fa-book-open"></i> Courses</a>
+        <a href="#categorySection" class="admin-qnav-btn"><i class="fa-solid fa-folder"></i> Categories</a>
+        <a href="#chapterSection"  class="admin-qnav-btn"><i class="fa-solid fa-list-ol"></i> Chapters &amp; Lessons</a>
+    </div>
+
+    @* ═══════════════════════  COURSES  ═══════════════════════ *@
+    <h3 class="admin-section-heading" id="courseSection">
+        <i class="fa-solid fa-book-open me-2"></i>Courses
+    </h3>
+    <div class="admin-grid">
+
+        @* ── Add Course Form ── *@
+        <article class="info-card admin-form-card">
+            <h3>Add New Course</h3>
+            <form method="post" asp-controller="Dashboard" asp-action="AddCourse" class="admin-form-grid">
+                <div>
+                    <label class="form-label">Title</label>
+                    <input class="form-control" name="name" type="text" placeholder="Course title" required>
+                </div>
+                <div>
+                    <label class="form-label">Category</label>
+                    <select class="form-select" name="categoryId" required>
+                        <option value="">-- Select --</option>
+                        @foreach (var cat in categories)
+                        {
+                            <option value="@cat.Id">@cat.Name</option>
+                        }
+                    </select>
+                </div>
+                <div>
+                    <label class="form-label">Level</label>
+                    <select class="form-select" name="level">
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="form-label">Language</label>
+                    <input class="form-control" name="language" type="text" value="Arabic">
+                </div>
+                <div>
+                    <label class="form-label">Price (EGP) — 0 = Free</label>
+                    <input class="form-control" name="price" type="number" min="0" step="1" value="0">
+                </div>
+                <div>
+                    <label class="form-label">Length (hours)</label>
+                    <input class="form-control" name="courseLength" type="number" min="0" step="1" value="0">
+                </div>
+                <div class="admin-form-wide">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-control" name="description" rows="3" placeholder="Short description" required></textarea>
+                </div>
+                <div class="admin-form-wide">
+                    <label class="form-label">Requirements <small class="text-muted">(one per line)</small></label>
+                    <textarea class="form-control" name="requirementsText" rows="3" placeholder="No prior experience needed&#10;A computer with internet"></textarea>
+                </div>
+                <div class="admin-form-wide">
+                    <label class="form-label">What Will We Learn <small class="text-muted">(one per line)</small></label>
+                    <textarea class="form-control" name="learnText" rows="3" placeholder="Build real-world projects&#10;Understand core concepts"></textarea>
+                </div>
+                <div class="admin-actions admin-form-wide">
+                    <button class="btn-primary-modern" type="submit">Add Course</button>
+                </div>
+            </form>
+        </article>
+
+        @* ── Courses List ── *@
+        <article class="info-card admin-list-card">
+            <h3>Published Courses — <span class="courses-status">@courses.Count</span></h3>
+            <div class="admin-table-wrap">
+                <table class="admin-table">
+                    <thead>
+                        <tr><th>Title</th><th>Category</th><th>Price</th><th>Actions</th></tr>
+                    </thead>
+                    <tbody>
+                        @if (!courses.Any())
+                        {
+                            <tr><td colspan="4" class="text-center py-3">No courses yet.</td></tr>
+                        }
+                        @foreach (var c in courses)
+                        {
+                            var reqText   = string.Join("\n", c.Requirements?.Select(r => r.Requirement) ?? Enumerable.Empty<string>());
+                            var learnTxt  = string.Join("\n", c.WhatWillLearn?.Select(w => w.Objective) ?? Enumerable.Empty<string>());
+                            <tr>
+                                <td>@c.Name</td>
+                                <td>@(c.Category?.Name ?? "-")</td>
+                                <td>@(c.PriceType == PriceType.Free ? "Free" : $"EGP {c.Price:0}")</td>
+                                <td>
+                                    <div class="admin-actions">
+                                        <button class="btn-outline-modern" type="button"
+                                                onclick="toggleEdit('c-@c.Id')">Edit</button>
+                                        <a class="btn-outline-modern admin-delete-btn"
+                                           asp-controller="Dashboard" asp-action="DeleteCourse"
+                                           asp-route-id="@c.Id"
+                                           onclick="return confirm('Delete this course?')">Delete</a>
+                                        <a class="btn-outline-modern"
+                                           asp-controller="Home" asp-action="CourseDetails"
+                                           asp-route-id="@c.Id">View</a>
+                                    </div>
+                                    @* Inline Edit *@
+                                    <div id="c-@c.Id" class="inline-edit-form" style="display:none;">
+                                        <form method="post" asp-controller="Dashboard" asp-action="EditCourse" class="admin-form-grid mt-3">
+                                            <input type="hidden" name="id" value="@c.Id">
+                                            <div>
+                                                <label class="form-label">Title</label>
+                                                <input class="form-control" name="name" value="@c.Name" required>
+                                            </div>
+                                            <div>
+                                                <label class="form-label">Category</label>
+                                                <select class="form-select" name="categoryId">
+                                                    @foreach (var cat in categories)
+                                                    {
+                                                        if (cat.Id == c.CategoryId)
+                                                        {
+                                                            <option value="@cat.Id" selected="selected">@cat.Name</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@cat.Id">@cat.Name</option>
+                                                        }
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label class="form-label">Level</label>
+                                                <select class="form-select" name="level">
+                                                    @{
+                                                        var lvls = new[] { (0,"Beginner"), (1,"Intermediate"), (2,"Advanced") };
+                                                        foreach (var (lv, ll) in lvls)
+                                                        {
+                                                            if ((int)c.Level == lv)
+                                                            {
+                                                                <option value="@lv" selected="selected">@ll</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@lv">@ll</option>
+                                                            }
+                                                        }
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label class="form-label">Language</label>
+                                                <input class="form-control" name="language" value="@c.Language">
+                                            </div>
+                                            <div>
+                                                <label class="form-label">Price (EGP)</label>
+                                                <input class="form-control" name="price" type="number" min="0" step="1" value="@c.Price">
+                                            </div>
+                                            <div>
+                                                <label class="form-label">Length (hours)</label>
+                                                <input class="form-control" name="courseLength" type="number" min="0" step="1" value="@c.CourseLength">
+                                            </div>
+                                            <div class="admin-form-wide">
+                                                <label class="form-label">Description</label>
+                                                <textarea class="form-control" name="description" rows="2">@c.Description</textarea>
+                                            </div>
+                                            <div class="admin-form-wide">
+                                                <label class="form-label">Requirements <small class="text-muted">(one per line)</small></label>
+                                                <textarea class="form-control" name="requirementsText" rows="3">@reqText</textarea>
+                                            </div>
+                                            <div class="admin-form-wide">
+                                                <label class="form-label">What Will We Learn <small class="text-muted">(one per line)</small></label>
+                                                <textarea class="form-control" name="learnText" rows="3">@learnTxt</textarea>
+                                            </div>
+                                            <div class="admin-actions admin-form-wide">
+                                                <button class="btn-primary-modern" type="submit">Save</button>
+                                                <button class="btn-outline-modern" type="button"
+                                                        onclick="toggleEdit('c-@c.Id')">Cancel</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </article>
+    </div>
+
+    @* ═══════════════════════  CATEGORIES  ═══════════════════════ *@
+    <h3 class="admin-section-heading" id="categorySection">
+        <i class="fa-solid fa-folder me-2"></i>Categories
+    </h3>
+    <div class="admin-grid">
+
+        @* ── Add Category Form ── *@
+        <article class="info-card admin-form-card">
+            <h3>Add New Category</h3>
+            <form method="post" asp-controller="Dashboard" asp-action="AddCategory" class="admin-form-grid">
+                <div class="admin-form-wide">
+                    <label class="form-label">Name</label>
+                    <input class="form-control" name="name" type="text" placeholder="e.g. Programming" required>
+                </div>
+                <div class="admin-form-wide">
+                    <label class="form-label">Description <small class="text-muted">(optional)</small></label>
+                    <textarea class="form-control" name="description" rows="2" placeholder="Brief description"></textarea>
+                </div>
+                <div class="admin-actions admin-form-wide">
+                    <button class="btn-primary-modern" type="submit">Add Category</button>
+                </div>
+            </form>
+        </article>
+
+        @* ── Categories List ── *@
+        <article class="info-card admin-list-card">
+            <h3>Active Categories — <span class="courses-status">@categories.Count</span></h3>
+            <div class="admin-table-wrap">
+                <table class="admin-table">
+                    <thead>
+                        <tr><th>Name</th><th>Description</th><th>Actions</th></tr>
+                    </thead>
+                    <tbody>
+                        @if (!categories.Any())
+                        {
+                            <tr><td colspan="3" class="text-center py-3">No categories yet.</td></tr>
+                        }
+                        @foreach (var cat in categories)
+                        {
+                            <tr>
+                                <td>@cat.Name</td>
+                                <td>@(cat.Description ?? "-")</td>
+                                <td>
+                                    <div class="admin-actions">
+                                        <button class="btn-outline-modern" type="button"
+                                                onclick="toggleEdit('cat-@cat.Id')">Edit</button>
+                                        <a class="btn-outline-modern admin-delete-btn"
+                                           asp-controller="Dashboard" asp-action="DeleteCategory"
+                                           asp-route-id="@cat.Id"
+                                           onclick="return confirm('Delete this category?')">Delete</a>
+                                    </div>
+                                    <div id="cat-@cat.Id" class="inline-edit-form" style="display:none;">
+                                        <form method="post" asp-controller="Dashboard" asp-action="EditCategory" class="admin-form-grid mt-2">
+                                            <input type="hidden" name="id" value="@cat.Id">
+                                            <div class="admin-form-wide">
+                                                <label class="form-label">Name</label>
+                                                <input class="form-control" name="name" value="@cat.Name" required>
+                                            </div>
+                                            <div class="admin-form-wide">
+                                                <label class="form-label">Description</label>
+                                                <textarea class="form-control" name="description" rows="2">@cat.Description</textarea>
+                                            </div>
+                                            <div class="admin-actions admin-form-wide">
+                                                <button class="btn-primary-modern" type="submit">Save</button>
+                                                <button class="btn-outline-modern" type="button"
+                                                        onclick="toggleEdit('cat-@cat.Id')">Cancel</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </article>
+    </div>
+
+    @* ═══════════════════════  CHAPTERS & LESSONS  ═══════════════════════ *@
+    <h3 class="admin-section-heading" id="chapterSection">
+        <i class="fa-solid fa-list-ol me-2"></i>Chapters &amp; Lessons
+    </h3>
+    <div class="admin-grid">
+
+        @* ── Add Chapter + Lesson Forms ── *@
+        <article class="info-card admin-form-card">
+            <h3>Add Chapter</h3>
+            <form method="post" asp-controller="Dashboard" asp-action="AddChapter" class="admin-form-grid">
+                <div class="admin-form-wide">
+                    <label class="form-label">Course</label>
+                    <select class="form-select" name="courseId" required>
+                        <option value="">-- Select Course --</option>
+                        @foreach (var c in courses)
+                        {
+                            <option value="@c.Id">@c.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="admin-form-wide">
+                    <label class="form-label">Chapter Title</label>
+                    <input class="form-control" name="name" type="text" placeholder="e.g. Introduction" required>
+                </div>
+                <div class="admin-actions admin-form-wide">
+                    <button class="btn-primary-modern" type="submit">Add Chapter</button>
+                </div>
+            </form>
+
+            <hr class="my-3">
+
+            <h3>Add Lesson</h3>
+            <form method="post" asp-controller="Dashboard" asp-action="AddLesson" class="admin-form-grid">
+                <div class="admin-form-wide">
+                    <label class="form-label">Chapter</label>
+                    <select class="form-select" name="chapterId" required>
+                        <option value="">-- Select Chapter --</option>
+                        @foreach (var c in courses)
+                        {
+                            var chs = c.Chapters ?? new();
+                            if (chs.Any())
+                            {
+                                <optgroup label="@c.Name">
+                                    @foreach (var ch in chs)
+                                    {
+                                        <option value="@ch.Id">@ch.Name</option>
+                                    }
+                                </optgroup>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="admin-form-wide">
+                    <label class="form-label">Lesson Title</label>
+                    <input class="form-control" name="name" type="text" placeholder="e.g. Variables and Data Types" required>
+                </div>
+                <div class="admin-actions admin-form-wide">
+                    <button class="btn-primary-modern" type="submit">Add Lesson</button>
+                </div>
+            </form>
+        </article>
+
+        @* ── Chapters + Lessons List ── *@
+        <article class="info-card admin-list-card">
+            <h3>Chapters &amp; Lessons</h3>
+            @if (!courses.Any(c => (c.Chapters ?? new()).Any()))
+            {
+                <p class="courses-status">No chapters yet.</p>
+            }
+            @foreach (var c in courses)
+            {
+                var chs = c.Chapters ?? new();
+                if (chs.Any())
+                {
+                    <div class="admin-course-chapters-group mb-4">
+                        <h5 class="admin-course-group-label">@c.Name</h5>
+                        @foreach (var ch in chs)
+                        {
+                            <div class="admin-chapter-row">
+                                <div class="d-flex align-items-center gap-2 flex-wrap">
+                                    <strong>@ch.Name</strong>
+                                    <span class="courses-status">@(ch.Lessons?.Count ?? 0) lesson(s)</span>
+                                </div>
+                                <div class="admin-actions mt-1">
+                                    <button class="btn-outline-modern" type="button"
+                                            onclick="toggleEdit('ch-@ch.Id')">Edit</button>
+                                    <a class="btn-outline-modern admin-delete-btn"
+                                       asp-controller="Dashboard" asp-action="DeleteChapter"
+                                       asp-route-id="@ch.Id"
+                                       onclick="return confirm('Delete chapter and all its lessons?')">Delete</a>
+                                </div>
+                                <div id="ch-@ch.Id" class="inline-edit-form mt-2" style="display:none;">
+                                    <form method="post" asp-controller="Dashboard" asp-action="EditChapter">
+                                        <input type="hidden" name="id" value="@ch.Id">
+                                        <div class="d-flex gap-2">
+                                            <input class="form-control" name="name" value="@ch.Name" required>
+                                            <button class="btn-primary-modern" type="submit">Save</button>
+                                            <button class="btn-outline-modern" type="button"
+                                                    onclick="toggleEdit('ch-@ch.Id')">✕</button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="admin-lessons-list ms-3 mt-1">
+                                    @foreach (var ls in ch.Lessons ?? new())
+                                    {
+                                        <div class="admin-lesson-row">
+                                            <i class="fas fa-play-circle me-1" style="opacity:.5"></i>
+                                            <span>@ls.Name</span>
+                                            <div class="admin-actions ms-2">
+                                                <button class="btn-outline-modern btn-sm" type="button"
+                                                        onclick="toggleEdit('ls-@ls.Id')">Edit</button>
+                                                <a class="btn-outline-modern admin-delete-btn btn-sm"
+                                                   asp-controller="Dashboard" asp-action="DeleteLesson"
+                                                   asp-route-id="@ls.Id"
+                                                   onclick="return confirm('Delete lesson?')">Delete</a>
+                                            </div>
+                                            <div id="ls-@ls.Id" class="inline-edit-form mt-1" style="display:none;">
+                                                <form method="post" asp-controller="Dashboard" asp-action="EditLesson">
+                                                    <input type="hidden" name="id" value="@ls.Id">
+                                                    <div class="d-flex gap-2">
+                                                        <input class="form-control" name="name" value="@ls.Name" required>
+                                                        <button class="btn-primary-modern" type="submit">Save</button>
+                                                        <button class="btn-outline-modern" type="button"
+                                                                onclick="toggleEdit('ls-@ls.Id')">✕</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            }
+        </article>
+    </div>
+
+</div>
+</section>
+
+@section Scripts {
+<script>
+function toggleEdit(id) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+</script>
+}

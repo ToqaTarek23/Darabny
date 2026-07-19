@@ -1,0 +1,408 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|d:\\projects\\darabnyproject_v7_di_fixed\\darabnyfinal\\darabnyproject\\viewmodels\\studentdashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|solutionrelative:darabnyproject\\viewmodels\\studentdashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|d:\\projects\\darabnyproject_v7_di_fixed\\darabnyfinal\\darabnyproject\\viewmodels\\lessonformviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|solutionrelative:darabnyproject\\viewmodels\\lessonformviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|d:\\projects\\darabnyproject_v7_di_fixed\\darabnyfinal\\darabnyproject\\viewmodels\\coursespageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|solutionrelative:darabnyproject\\viewmodels\\coursespageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|d:\\projects\\darabnyproject_v7_di_fixed\\darabnyfinal\\darabnyproject\\viewmodels\\courseformviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|solutionrelative:darabnyproject\\viewmodels\\courseformviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|d:\\projects\\darabnyproject_v7_di_fixed\\darabnyfinal\\darabnyproject\\viewmodels\\chapterformviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|solutionrelative:darabnyproject\\viewmodels\\chapterformviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|d:\\projects\\darabnyproject_v7_di_fixed\\darabnyfinal\\darabnyproject\\services\\courseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|solutionrelative:darabnyproject\\services\\courseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|d:\\projects\\darabnyproject_v7_di_fixed\\darabnyfinal\\darabnyproject\\repositories\\progressrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|solutionrelative:darabnyproject\\repositories\\progressrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|d:\\projects\\darabnyproject_v7_di_fixed\\darabnyfinal\\darabnyproject\\repositories\\icategoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|solutionrelative:darabnyproject\\repositories\\icategoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|d:\\projects\\darabnyproject_v7_di_fixed\\darabnyfinal\\darabnyproject\\repositories\\courserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|solutionrelative:darabnyproject\\repositories\\courserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|d:\\projects\\darabnyproject_v7_di_fixed\\darabnyfinal\\darabnyproject\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|solutionrelative:darabnyproject\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|d:\\projects\\darabnyproject_v7_di_fixed\\darabnyfinal\\darabnyproject\\data\\darabnydbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|solutionrelative:darabnyproject\\data\\darabnydbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|d:\\projects\\darabnyproject_v7_di_fixed\\darabnyfinal\\darabnyproject\\controllers\\progresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|solutionrelative:darabnyproject\\controllers\\progresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|d:\\projects\\darabnyproject_v7_di_fixed\\darabnyfinal\\darabnyproject\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|solutionrelative:darabnyproject\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|d:\\projects\\darabnyproject_v7_di_fixed\\darabnyfinal\\darabnyproject\\controllers\\enrollmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|solutionrelative:darabnyproject\\controllers\\enrollmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|d:\\projects\\darabnyproject_v7_di_fixed\\darabnyfinal\\darabnyproject\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|solutionrelative:darabnyproject\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|d:\\projects\\darabnyproject_v7_di_fixed\\darabnyfinal\\darabnyproject\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|solutionrelative:darabnyproject\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|d:\\projects\\darabnyproject_v7_di_fixed\\darabnyfinal\\darabnyproject\\controllers\\admin\\adminlessoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|solutionrelative:darabnyproject\\controllers\\admin\\adminlessoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|d:\\projects\\darabnyproject_v7_di_fixed\\darabnyfinal\\darabnyproject\\controllers\\admin\\admincoursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|solutionrelative:darabnyproject\\controllers\\admin\\admincoursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|d:\\projects\\darabnyproject_v7_di_fixed\\darabnyfinal\\darabnyproject\\controllers\\admin\\adminchaptercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|solutionrelative:darabnyproject\\controllers\\admin\\adminchaptercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|d:\\projects\\darabnyproject_v7_di_fixed\\darabnyfinal\\darabnyproject\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|solutionrelative:darabnyproject\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|d:\\projects\\darabnyproject_v7_di_fixed\\darabnyfinal\\darabnyproject\\configration\\progressconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|solutionrelative:darabnyproject\\configration\\progressconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|d:\\projects\\darabnyproject_v7_di_fixed\\darabnyfinal\\darabnyproject\\views\\home\\coursedetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|solutionrelative:darabnyproject\\views\\home\\coursedetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|d:\\projects\\darabnyproject_v7_di_fixed\\darabnyfinal\\darabnyproject\\migrations\\20260706085602_addidentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5965A3B0-471E-47AA-86F1-F409A3E99459}|DarabnyProject\\DarabnyProject.csproj|solutionrelative:darabnyproject\\migrations\\20260706085602_addidentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StudentDashboardViewModel.cs",
+              "DocumentMoniker": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\ViewModels\\StudentDashboardViewModel.cs",
+              "RelativeDocumentMoniker": "DarabnyProject\\ViewModels\\StudentDashboardViewModel.cs",
+              "ToolTip": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\ViewModels\\StudentDashboardViewModel.cs",
+              "RelativeToolTip": "DarabnyProject\\ViewModels\\StudentDashboardViewModel.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAAABYAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T18:14:39.466Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LessonFormViewModel.cs",
+              "DocumentMoniker": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\ViewModels\\LessonFormViewModel.cs",
+              "RelativeDocumentMoniker": "DarabnyProject\\ViewModels\\LessonFormViewModel.cs",
+              "ToolTip": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\ViewModels\\LessonFormViewModel.cs",
+              "RelativeToolTip": "DarabnyProject\\ViewModels\\LessonFormViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T18:14:29.733Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CoursesPageViewModel.cs",
+              "DocumentMoniker": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\ViewModels\\CoursesPageViewModel.cs",
+              "RelativeDocumentMoniker": "DarabnyProject\\ViewModels\\CoursesPageViewModel.cs",
+              "ToolTip": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\ViewModels\\CoursesPageViewModel.cs",
+              "RelativeToolTip": "DarabnyProject\\ViewModels\\CoursesPageViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T18:14:23.775Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CourseFormViewModel.cs",
+              "DocumentMoniker": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\ViewModels\\CourseFormViewModel.cs",
+              "RelativeDocumentMoniker": "DarabnyProject\\ViewModels\\CourseFormViewModel.cs",
+              "ToolTip": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\ViewModels\\CourseFormViewModel.cs",
+              "RelativeToolTip": "DarabnyProject\\ViewModels\\CourseFormViewModel.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAAACcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T18:14:14.507Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ChapterFormViewModel.cs",
+              "DocumentMoniker": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\ViewModels\\ChapterFormViewModel.cs",
+              "RelativeDocumentMoniker": "DarabnyProject\\ViewModels\\ChapterFormViewModel.cs",
+              "ToolTip": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\ViewModels\\ChapterFormViewModel.cs",
+              "RelativeToolTip": "DarabnyProject\\ViewModels\\ChapterFormViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T18:13:57.198Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CourseService.cs",
+              "DocumentMoniker": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Services\\CourseService.cs",
+              "RelativeDocumentMoniker": "DarabnyProject\\Services\\CourseService.cs",
+              "ToolTip": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Services\\CourseService.cs",
+              "RelativeToolTip": "DarabnyProject\\Services\\CourseService.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAwC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T18:13:10.148Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ProgressRepository.cs",
+              "DocumentMoniker": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Repositories\\ProgressRepository.cs",
+              "RelativeDocumentMoniker": "DarabnyProject\\Repositories\\ProgressRepository.cs",
+              "ToolTip": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Repositories\\ProgressRepository.cs",
+              "RelativeToolTip": "DarabnyProject\\Repositories\\ProgressRepository.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAAADUAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T18:12:47.467Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ICategoryRepository.cs",
+              "DocumentMoniker": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Repositories\\ICategoryRepository.cs",
+              "RelativeDocumentMoniker": "DarabnyProject\\Repositories\\ICategoryRepository.cs",
+              "ToolTip": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Repositories\\ICategoryRepository.cs",
+              "RelativeToolTip": "DarabnyProject\\Repositories\\ICategoryRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T18:12:27.015Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ApplicationUser.cs",
+              "DocumentMoniker": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Models\\ApplicationUser.cs",
+              "RelativeDocumentMoniker": "DarabnyProject\\Models\\ApplicationUser.cs",
+              "ToolTip": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Models\\ApplicationUser.cs",
+              "RelativeToolTip": "DarabnyProject\\Models\\ApplicationUser.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAUwBgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T18:11:51.889Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "DarabnyDbContext.cs",
+              "DocumentMoniker": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Data\\DarabnyDbContext.cs",
+              "RelativeDocumentMoniker": "DarabnyProject\\Data\\DarabnyDbContext.cs",
+              "ToolTip": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Data\\DarabnyDbContext.cs",
+              "RelativeToolTip": "DarabnyProject\\Data\\DarabnyDbContext.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T18:11:19.929Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ProgressController.cs",
+              "DocumentMoniker": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Controllers\\ProgressController.cs",
+              "RelativeDocumentMoniker": "DarabnyProject\\Controllers\\ProgressController.cs",
+              "ToolTip": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Controllers\\ProgressController.cs",
+              "RelativeToolTip": "DarabnyProject\\Controllers\\ProgressController.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T18:11:04.365Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "DarabnyProject\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "DarabnyProject\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAHEAAAAAAAAAAAAAAF4AAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T18:10:52.314Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "EnrollmentController.cs",
+              "DocumentMoniker": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Controllers\\EnrollmentController.cs",
+              "RelativeDocumentMoniker": "DarabnyProject\\Controllers\\EnrollmentController.cs",
+              "ToolTip": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Controllers\\EnrollmentController.cs",
+              "RelativeToolTip": "DarabnyProject\\Controllers\\EnrollmentController.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T18:10:42.565Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CourseRepository.cs",
+              "DocumentMoniker": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Repositories\\CourseRepository.cs",
+              "RelativeDocumentMoniker": "DarabnyProject\\Repositories\\CourseRepository.cs",
+              "ToolTip": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Repositories\\CourseRepository.cs",
+              "RelativeToolTip": "DarabnyProject\\Repositories\\CourseRepository.cs",
+              "ViewState": "AgIAAHAAAAAAAAAAAAAQwIYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T08:54:33.657Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "DashboardController.cs",
+              "DocumentMoniker": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Controllers\\DashboardController.cs",
+              "RelativeDocumentMoniker": "DarabnyProject\\Controllers\\DashboardController.cs",
+              "ToolTip": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Controllers\\DashboardController.cs",
+              "RelativeToolTip": "DarabnyProject\\Controllers\\DashboardController.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAowFoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T18:10:16.188Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "DarabnyProject\\Controllers\\AccountController.cs",
+              "ToolTip": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "DarabnyProject\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAkwGsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T18:09:42.94Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "AdminLessonController.cs",
+              "DocumentMoniker": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Controllers\\Admin\\AdminLessonController.cs",
+              "RelativeDocumentMoniker": "DarabnyProject\\Controllers\\Admin\\AdminLessonController.cs",
+              "ToolTip": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Controllers\\Admin\\AdminLessonController.cs",
+              "RelativeToolTip": "DarabnyProject\\Controllers\\Admin\\AdminLessonController.cs",
+              "ViewState": "AgIAAH0AAAAAAAAAAAAgwJUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T18:09:28.486Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "AdminCourseController.cs",
+              "DocumentMoniker": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Controllers\\Admin\\AdminCourseController.cs",
+              "RelativeDocumentMoniker": "DarabnyProject\\Controllers\\Admin\\AdminCourseController.cs",
+              "ToolTip": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Controllers\\Admin\\AdminCourseController.cs",
+              "RelativeToolTip": "DarabnyProject\\Controllers\\Admin\\AdminCourseController.cs",
+              "ViewState": "AgIAAJcAAAAAAAAAAAAgwK8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T18:08:49.2Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "AdminChapterController.cs",
+              "DocumentMoniker": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Controllers\\Admin\\AdminChapterController.cs",
+              "RelativeDocumentMoniker": "DarabnyProject\\Controllers\\Admin\\AdminChapterController.cs",
+              "ToolTip": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Controllers\\Admin\\AdminChapterController.cs",
+              "RelativeToolTip": "DarabnyProject\\Controllers\\Admin\\AdminChapterController.cs",
+              "ViewState": "AgIAAHsAAAAAAAAAAAAgwJMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T18:08:23.281Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\appsettings.json",
+              "RelativeDocumentMoniker": "DarabnyProject\\appsettings.json",
+              "ToolTip": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\appsettings.json",
+              "RelativeToolTip": "DarabnyProject\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-07-06T09:00:37.465Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "20260706085602_addidentity.cs",
+              "DocumentMoniker": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Migrations\\20260706085602_addidentity.cs",
+              "RelativeDocumentMoniker": "DarabnyProject\\Migrations\\20260706085602_addidentity.cs",
+              "ToolTip": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Migrations\\20260706085602_addidentity.cs",
+              "RelativeToolTip": "DarabnyProject\\Migrations\\20260706085602_addidentity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T08:56:03.007Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "ProgressConfiguration.cs",
+              "DocumentMoniker": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Configration\\ProgressConfiguration.cs",
+              "RelativeDocumentMoniker": "DarabnyProject\\Configration\\ProgressConfiguration.cs",
+              "ToolTip": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Configration\\ProgressConfiguration.cs",
+              "RelativeToolTip": "DarabnyProject\\Configration\\ProgressConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-06T08:55:14.464Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "CourseDetails.cshtml",
+              "DocumentMoniker": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Views\\Home\\CourseDetails.cshtml",
+              "RelativeDocumentMoniker": "DarabnyProject\\Views\\Home\\CourseDetails.cshtml",
+              "ToolTip": "D:\\Projects\\DarabnyProject_v7_DI_fixed\\DarabnyFinal\\DarabnyProject\\Views\\Home\\CourseDetails.cshtml",
+              "RelativeToolTip": "DarabnyProject\\Views\\Home\\CourseDetails.cshtml",
+              "ViewState": "AgIAAIoAAAAAAAAAAAAEwJgAAABaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-06T08:54:53.224Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

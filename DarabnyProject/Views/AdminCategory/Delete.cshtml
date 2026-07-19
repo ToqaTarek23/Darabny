@@ -1,0 +1,17 @@
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model DarabnyProject.Models.Category
+<div class="container py-4">
+    <h2>@Model.Name</h2>
+    <p>@(Model.Description ?? "-")</p>
+    <div class="alert alert-danger">
+        Are you sure you want to delete this category?
+    </div>
+    <div class="d-flex gap-2">
+        <form method="post">
+            <input type="submit" value="Yes, Delete" class="btn btn-danger" />
+        </form>
+        <a class="btn btn-secondary" href="/admin/categories">Cancel</a>
+    </div>
+</div>

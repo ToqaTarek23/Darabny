@@ -1,0 +1,56 @@
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model List<DarabnyProject.Models.Course>
+@section breadCrumb {
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Courses</h4>
+                <div class="ms-auto text-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                            <li class="breadcrumb-item active">Courses</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="mb-3">
+    <a class="btn btn-primary" href="/admin/courses/create">+ Add New Course</a>
+</div>
+<h5 class="card-title">Course List</h5>
+<div class="table-responsive">
+    <table id="zero_config" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Level</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var c in Model)
+            {
+                <tr>
+                    <td>@c.Id</td>
+                    <td>@c.Name</td>
+                    <td>@(c.Category?.Name ?? "-")</td>
+                    <td>@(c.PriceType == DarabnyProject.Enums.PriceType.Free ? "Free" : $"EGP {c.Price:0}")</td>
+                    <td>@c.Level</td>
+                    <td>
+                        <a class="btn btn-primary"  href="/admin/courses/@c.Id">Details</a>
+                        <a class="btn btn-success"  href="/admin/courses/edit/@c.Id">Edit</a>
+                        <a class="btn btn-danger"   href="/admin/courses/delete/@c.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,113 @@
+@model CoursesPageViewModel
+@{
+    ViewData["Title"]      = "Courses";
+    ViewData["ActivePage"] = "Courses";
+    ViewData["BodyClass"]  = "courses-theme";
+    Layout = "_CustomerLayout";
+}
+
+<section class="section">
+    <div class="panel courses-panel">
+        <div class="courses-head">
+            <span class="courses-kicker">Live Catalog</span>
+            <h2>Explore Courses</h2>
+            <p>Browse all available courses. Use the filters below to narrow your search.</p>
+        </div>
+
+        <form method="get" asp-controller="Home" asp-action="Courses" class="courses-controls">
+            <input type="text"
+                   name="query"
+                   class="form-control"
+                   placeholder="Search by title or description"
+                   value="@Model.Query">
+
+            <select name="categoryId" class="form-select">
+                <option value="0">All Categories</option>
+                @foreach (var cat in Model.Categories)
+                {
+                    if (cat.Id == Model.CategoryId)
+                    {
+                        <option value="@cat.Id" selected="selected">@cat.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@cat.Id">@cat.Name</option>
+                    }
+                }
+            </select>
+
+            <select name="sort" class="form-select">
+                @{
+                    var sorts = new[] {
+                        ("default",   "Sort: Default"),
+                        ("priceAsc",  "Price: Low to High"),
+                        ("priceDesc", "Price: High to Low"),
+                        ("newest",    "Newest First")
+                    };
+                    foreach (var (sv, sl) in sorts)
+                    {
+                        if (sv == Model.Sort)
+                        {
+                            <option value="@sv" selected="selected">@sl</option>
+                        }
+                        else
+                        {
+                            <option value="@sv">@sl</option>
+                        }
+                    }
+                }
+            </select>
+
+            <button type="submit" class="btn-primary-modern">Search</button>
+
+            @if (!string.IsNullOrWhiteSpace(Model.Query) || Model.CategoryId > 0 || Model.Sort != "default")
+            {
+                <a class="btn-outline-modern"
+                   asp-controller="Home" asp-action="Courses">Clear</a>
+            }
+        </form>
+
+        <p class="courses-status">
+            @Model.TotalCount course(s) found
+            @if (!string.IsNullOrWhiteSpace(Model.Query))
+            {
+                <span> for "@Model.Query"</span>
+            }
+        </p>
+
+        <div class="courses-grid">
+            @if (!Model.Courses.Any())
+            {
+                <article class="courses-empty-state">
+                    <i class="fa-solid fa-magnifying-glass fa-3x mb-3" style="opacity:0.3"></i>
+                    <h3>No courses found</h3>
+                    <p>Try a different search or <a asp-controller="Home" asp-action="Courses">clear filters</a>.</p>
+                </article>
+            }
+            @foreach (var course in Model.Courses)
+            {
+                <article class="course-feature">
+                    <div class="course-cover">
+                        <div class="course-cover-placeholder">
+                            <i class="fa-solid fa-book-open fa-2x"></i>
+                        </div>
+                        <span class="course-cover-badge">
+                            <i class="fa-solid fa-book-open"></i>
+                        </span>
+                    </div>
+                    <h3>@course.Name</h3>
+                    <p>@course.Description</p>
+                    <div class="course-meta">
+                        <span>@course.Level</span>
+                        <span>@course.DisplayPrice</span>
+                        <span>@course.CategoryName</span>
+                        <span>@course.Language</span>
+                    </div>
+                    <a class="btn-primary-modern d-block text-center text-decoration-none"
+                       asp-controller="Home" asp-action="CourseDetails"
+                       asp-route-id="@course.Id">View Details</a>
+                </article>
+            }
+        </div>
+    </div>
+</section>

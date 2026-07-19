@@ -1,0 +1,186 @@
+@model DarabnyProject.ViewModels.EnrollmentConfirmationViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Enrollment Confirmation";
+}
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #0f172a 0%, #111827 45%, #1d4ed8 100%);
+        color: #e5eefb;
+        min-height: 100vh;
+    }
+
+    .confirm-wrap {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 48px 20px;
+    }
+
+    .confirm-card {
+        background: rgba(15, 23, 42, 0.82);
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(16px);
+    }
+
+    .confirm-top {
+        padding: 28px 30px;
+        background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(59, 130, 246, 0.2));
+        border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+    }
+
+    .badge-success {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(34, 197, 94, 0.18);
+        color: #86efac;
+        font-weight: 700;
+        letter-spacing: .2px;
+        margin-bottom: 16px;
+    }
+
+    .confirm-grid {
+        display: grid;
+        grid-template-columns: 1.2fr .8fr;
+        gap: 24px;
+        padding: 30px;
+    }
+
+    .panel {
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(148, 163, 184, 0.14);
+        border-radius: 18px;
+        padding: 22px;
+    }
+
+    .meta-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 12px 0;
+        border-bottom: 1px dashed rgba(148, 163, 184, 0.16);
+    }
+
+    .meta-row:last-child {
+        border-bottom: 0;
+    }
+
+    .label {
+        color: #94a3b8;
+        font-size: .9rem;
+    }
+
+    .value {
+        font-weight: 700;
+        text-align: right;
+    }
+
+    .price {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin: 8px 0 0;
+    }
+
+    .btn-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 22px;
+    }
+
+    .btn-modern {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 18px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 700;
+        border: 1px solid transparent;
+    }
+
+    .btn-primary-modern {
+        background: linear-gradient(135deg, #2563eb, #22c55e);
+        color: white;
+    }
+
+    .btn-outline-modern {
+        background: transparent;
+        color: #e5eefb;
+        border-color: rgba(229, 238, 251, 0.18);
+    }
+
+    @@media (max-width: 768px) {
+        .confirm-grid {
+            grid-template-columns: 1fr;
+            padding: 20px;
+        }
+    }
+</style>
+
+<div class="confirm-wrap">
+    <div class="confirm-card">
+        <div class="confirm-top">
+            <div class="badge-success">
+                <i class="fa-solid fa-circle-check"></i>
+                Enrollment Completed
+            </div>
+            <h1 style="margin:0;font-size:2rem;">@Model.CourseName</h1>
+            <p style="margin:.5rem 0 0;color:#cbd5e1;max-width:720px;">
+                @Model.PaymentStatus. This is a simulated checkout flow to make the enrollment feel like a real payment confirmation.
+            </p>
+        </div>
+
+        <div class="confirm-grid">
+            <div class="panel">
+                <h3 style="margin-top:0;">Payment Summary</h3>
+
+                <div class="meta-row">
+                    <span class="label">Course</span>
+                    <span class="value">@Model.CourseName</span>
+                </div>
+                <div class="meta-row">
+                    <span class="label">Status</span>
+                    <span class="value">@Model.PaymentStatus</span>
+                </div>
+                <div class="meta-row">
+                    <span class="label">Transaction ID</span>
+                    <span class="value">@Model.TransactionId</span>
+                </div>
+                <div class="meta-row">
+                    <span class="label">Confirmed At</span>
+                    <span class="value">@Model.ConfirmedAt.ToString("dd MMM yyyy • hh:mm tt")</span>
+                </div>
+                <div class="meta-row">
+                    <span class="label">Amount</span>
+                    <span class="value">@(Model.IsFreeCourse ? "Free" : $"{Model.Currency} {Model.Amount:0}")</span>
+                </div>
+
+                <div class="btn-row">
+                    <a asp-controller="Dashboard" asp-action="Student" class="btn-modern btn-primary-modern">Go to Dashboard</a>
+                    <a asp-controller="Home" asp-action="CourseDetails" asp-route-id="@Model.CourseId" class="btn-modern btn-outline-modern">Back to Course</a>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h3 style="margin-top:0;">What happens next</h3>
+                <p style="color:#cbd5e1;line-height:1.8;">
+                    Your seat is reserved instantly, and the course is now visible in your dashboard.
+                    In a real system this screen would follow a card/online payment gateway response.
+                </p>
+                <div style="margin-top:18px;padding:16px;border-radius:14px;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.18);">
+                    <strong style="display:block;margin-bottom:6px;">Simulation note</strong>
+                    <span style="color:#d1fae5;">No real payment was charged. This is a demo confirmation step.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,441 @@
+@model CourseDetailsViewModel
+@{
+    ViewData["Title"]      = Model.Name;
+    ViewData["ActivePage"] = "Courses";
+    ViewData["BodyClass"]  = "courses-theme";
+    Layout = "_CustomerLayout";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/course-details.css">
+}
+
+<div class="course-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="course-meta-list">
+                    <span><i class="fas fa-tag" aria-hidden="true"></i> @Model.CategoryName</span>
+                </div>
+                <h1>@Model.Name</h1>
+                <p class="course-subtitle">@Model.Description</p>
+                <div class="course-meta-list">
+                    <span><i class="fas fa-users"></i> @Model.StudentNumbers students</span>
+                    <span><i class="fas fa-clock"></i> @Model.CourseLength hrs</span>
+                    <span><i class="fas fa-layer-group"></i> @Model.Level</span>
+                    <span><i class="fas fa-language"></i> @Model.Language</span>
+                    <span><i class="fas fa-sync-alt"></i> @Model.LastUpdated.ToString("MMM yyyy")</span>
+                    @if (Model.AverageRating > 0)
+                    {
+                        <span><i class="fas fa-star" style="color:#f59e0b"></i> @Model.AverageRating (@Model.Reviews.Count reviews)</span>
+                    }
+                </div>
+                @if (!string.IsNullOrWhiteSpace(Model.InstructorName))
+                {
+                    <div class="d-flex align-items-center gap-3 mt-3">
+                        <div class="instructor-mini-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <div class="instructor-mini-label">Instructor</div>
+                            <div class="instructor-mini-name">@Model.InstructorName</div>
+                            @if (!string.IsNullOrWhiteSpace(Model.InstructorBio))
+                            {
+                                <small class="text-muted">@Model.InstructorBio</small>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="course-main-content">
+    <div class="container">
+        <div class="course-details-layout">
+
+            <!-- Left -->
+            <div class="course-details-main">
+
+                @if (Model.WhatWillLearn.Any())
+                {
+                    <section class="course-section animate-fade-in-up">
+                        <h3><i class="fas fa-check-circle me-2 icon-green"></i>What You'll Learn</h3>
+                        <div class="learn-grid">
+                            @foreach (var item in Model.WhatWillLearn)
+                            {
+                                <div class="learn-item">
+                                    <i class="fas fa-check"></i><span>@item</span>
+                                </div>
+                            }
+                        </div>
+                    </section>
+                }
+
+                @if (Model.Requirements.Any())
+                {
+                    <section class="course-section animate-fade-in-up">
+                        <h3><i class="fas fa-list-ul me-2 icon-primary"></i>Requirements</h3>
+                        <ul class="requirements-list">
+                            @foreach (var req in Model.Requirements)
+                            {
+                                <li>@req</li>
+                            }
+                        </ul>
+                    </section>
+                }
+
+                @if (Model.Chapters.Any())
+                {
+                    <section class="course-section animate-fade-in-up">
+                        <h3><i class="fas fa-book-open me-2 icon-primary"></i>Course Curriculum</h3>
+                        <div class="curriculum-section">
+                            @foreach (var chapter in Model.Chapters)
+                            {
+                                <div class="curriculum-chapter">
+                                    <div class="chapter-header" tabindex="0" role="button" aria-expanded="false">
+                                        <h5>@chapter.Name</h5>
+                                        <span class="chapter-lesson-count">
+                                            @(chapter.Lessons?.Count ?? 0) lessons
+                                        </span>
+                                        <i class="fas fa-chevron-down chapter-toggle"></i>
+                                    </div>
+                                    <div class="chapter-lessons">
+                                        @foreach (var lesson in chapter.Lessons ?? new())
+                                        {
+                                            <div class="lesson-item d-flex align-items-center justify-content-between">
+                                                <div class="d-flex align-items-center gap-2">
+                                                    @if (Model.CompletedLessonIds.Contains(lesson.Id))
+                                                    {
+                                                        <i class="fas fa-check-circle" style="color:#22c55e"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="fas fa-play-circle"></i>
+                                                    }
+                                                    <span>@lesson.Name</span>
+                                                </div>
+                                                @if (Model.IsEnrolled && !Model.CompletedLessonIds.Contains(lesson.Id))
+                                                {
+                                                    <form method="post" asp-controller="Progress" asp-action="MarkComplete" style="margin:0;">
+                                                        <input type="hidden" name="lessonId" value="@lesson.Id" />
+                                                        <input type="hidden" name="courseId" value="@Model.Id" />
+                                                        <button type="submit" title="Mark as complete"
+                                                                style="background:none;border:none;cursor:pointer;color:#94a3b8;font-size:.8rem;padding:0 4px;">
+                                                            ✓
+                                                        </button>
+                                                    </form>
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </section>
+                }
+
+                @if (Model.Reviews.Any())
+                {
+                    <section class="course-section animate-fade-in-up">
+                        <h3><i class="fas fa-star me-2" style="color:#f59e0b"></i>Student Reviews</h3>
+                        @foreach (var review in Model.Reviews)
+                        {
+                            <div class="review-card mb-3 p-3"
+                                 style="border:2px solid rgba(245,158,11,.35);border-radius:10px;background:rgba(255,251,235,.5);">
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <strong>@(review.User?.Name ?? "Student")</strong>
+                                    <small class="text-muted">@review.AddedTime.ToString("dd MMM yyyy")</small>
+                                </div>
+                                <div class="mb-1" style="color:#f59e0b;font-size:1.1rem;">
+                                    @for (int i = 0; i < (int)review.Rating; i++) { <text>★</text> }
+                                    @for (int i = (int)review.Rating; i < 5; i++) { <text >★</text> }
+                                    <span style="font-size:.85rem;color:#92400e;font-weight:600;margin-left:.4rem;">
+                                        @review.Rating / 5
+                                    </span>
+                                </div>
+                                <p class="mb-0">@review.Comment</p>
+                            </div>
+                        }
+                    </section>
+                }
+
+
+                @* ── Reviews Section ── *@
+                <section class="course-section animate-fade-in-up">
+                    <h3><i class="fas fa-star me-2" style="color:#f59e0b"></i>
+                        Student Reviews
+                        @if (Model.Reviews.Any())
+                        {
+                            <span style="font-size:1rem;font-weight:400;opacity:.7;">
+                                (@Model.AverageRating ★ average from @Model.Reviews.Count review(s))
+                            </span>
+                        }
+                    </h3>
+
+                    @* Display existing reviews *@
+                    @if (!Model.Reviews.Any())
+                    {
+                        <p class="text-muted">No reviews yet. Be the first!</p>
+                    }
+                    else
+                    {
+                        @foreach (var review in Model.Reviews)
+                        {
+                            <div class="review-card mb-3 p-3"
+                                 style="border:2px solid rgba(245,158,11,.35);border-radius:10px;background:rgba(255,251,235,.5);">
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <strong>@(review.User?.Name ?? "Student")</strong>
+                                    <small class="text-muted">@review.AddedTime.ToString("dd MMM yyyy")</small>
+                                </div>
+                                <div class="mb-1" style="color:#f59e0b;font-size:1.1rem;">
+                                    @for (int i = 0; i < (int)review.Rating; i++) { <text>★</text> }
+                                    @for (int i = (int)review.Rating; i < 5; i++) { <text >★</text> }
+                                    <span style="font-size:.85rem;color:#92400e;font-weight:600;margin-left:.4rem;">
+                                        @review.Rating / 5
+                                    </span>
+                                </div>
+                                <p class="mb-0">@review.Comment</p>
+                            </div>
+                        }
+                    }
+
+                    @* Add review form — only if logged in AND enrolled AND not already reviewed *@
+                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                    {
+                        if (!Model.IsEnrolled)
+                        {
+                            <p class="text-muted mt-2">
+                                <i class="fas fa-lock me-1"></i>
+                                Enroll in this course to leave a review.
+                            </p>
+                        }
+                        else if (Model.HasReviewed)
+                        {
+                            <div class="alert alert-success mt-2" style="font-size:.9rem;">
+                                <i class="fas fa-circle-check me-1"></i> You've already reviewed this course.
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="mt-3 p-3" style="border:1px solid rgba(0,0,0,.1);border-radius:10px;">
+                                <h5 style="font-size:1rem;">Write a Review</h5>
+                                <form method="post" asp-controller="Review" asp-action="Add">
+                                    <input type="hidden" name="courseId" value="@Model.Id" />
+                                    <div class="mb-2">
+                                        <label class="form-label fw-semibold">Rating</label>
+                                        <select name="rating" class="form-select" style="max-width:160px;">
+                                            <option value="5">★★★★★ (5)</option>
+                                            <option value="4">★★★★☆ (4)</option>
+                                            <option value="3">★★★☆☆ (3)</option>
+                                            <option value="2">★★☆☆☆ (2)</option>
+                                            <option value="1">★☆☆☆☆ (1)</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label fw-semibold">Comment</label>
+                                        <textarea name="comment" class="form-control" rows="3"
+                                                  placeholder="Share your experience..." required
+                                                  minlength="10"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn-primary-modern">
+                                        <i class="fas fa-paper-plane me-1"></i> Submit Review
+                                    </button>
+                                </form>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-muted mt-2">
+                            <a asp-controller="Account" asp-action="Login">Login</a> to leave a review.
+                        </p>
+                    }
+                </section>
+
+            </div>
+
+            <!-- Right: Sidebar -->
+            <aside class="course-details-sidebar animate-fade-in-right">
+                <div class="enrollment-card enrollment-card-offset">
+                    <div class="card-body">
+                        <div class="course-price">
+                            @if (Model.PriceType == PriceType.Free)
+                            {
+                                <span>Free</span>
+                            }
+                            else if (Model.DiscountedPrice.HasValue)
+                            {
+                                <span>EGP @Model.DiscountedPrice.Value.ToString("0")</span>
+                                <span class="text-muted text-decoration-line-through ms-2">
+                                    EGP @Model.Price.ToString("0")
+                                </span>
+                            }
+                            else
+                            {
+                                <span>EGP @Model.Price.ToString("0")</span>
+                            }
+                        </div>
+                        <h6 class="course-includes-title mt-3">This course includes:</h6>
+                        <ul class="includes-list">
+                            <li><i class="fas fa-clock"></i> @Model.CourseLength hours of content</li>
+                            <li><i class="fas fa-list-ol"></i> @Model.Chapters.Count chapters</li>
+                            <li><i class="fas fa-infinity"></i> Full lifetime access</li>
+                            <li><i class="fas fa-mobile-alt"></i> Mobile &amp; desktop</li>
+                            <li><i class="fas fa-certificate"></i> Certificate of completion</li>
+                        </ul>
+                        @if (Model.IsEnrolled && Model.CourseProgressPercent > 0)
+                        {
+                            <div class="mt-3">
+                                <div class="d-flex justify-content-between mb-1" style="font-size:.85rem;">
+                                    <span>Your Progress</span>
+                                    <strong>@Model.CourseProgressPercent%</strong>
+                                </div>
+                                <div class="progress-track">
+                                    <div class="progress-fill" style="width:@Model.CourseProgressPercent%"></div>
+                                </div>
+                            </div>
+                        }
+
+                        @if (User.Identity != null && User.Identity.IsAuthenticated)
+                        {
+                            <form id="enrollmentForm" method="post" asp-controller="Enrollment" asp-action="Toggle" class="mt-3">
+                                <input type="hidden" name="courseId" value="@Model.Id" />
+                                <button type="submit" class="@(Model.IsEnrolled ? "btn-outline-modern" : "btn-primary-modern") d-block w-100 text-center">
+                                    @(Model.IsEnrolled ? "Unenroll" : "Enroll Now")
+                                </button>
+                            </form>
+                            <form method="post" asp-controller="Favorite" asp-action="Toggle" class="mt-2">
+                                <input type="hidden" name="courseId" value="@Model.Id" />
+                                <button type="submit" class="btn-outline-modern d-block w-100 text-center">
+                                    <i class="@(Model.IsFavorited ? "fas" : "far") fa-heart me-1" style="color:#e05"></i>
+                                    @(Model.IsFavorited ? "Remove from Favorites" : "Add to Favorites")
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            <a asp-controller="Account" asp-action="Login"
+                               class="btn-primary-modern d-block w-100 text-center text-decoration-none mt-3">
+                                Login to Enroll
+                            </a>
+                        }
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<!-- Enrollment Confirmation Modal -->
+<div id="enrollmentModalOverlay" class="enrollment-modal-overlay">
+    <div class="enrollment-modal">
+        <button type="button" class="enrollment-modal-close" onclick="closeEnrollmentModal()">&times;</button>
+        
+        <div class="enrollment-modal-header">
+            <div class="enrollment-modal-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h3 class="enrollment-modal-title">Enrollment Confirmed!</h3>
+        </div>
+
+        <div class="enrollment-modal-content">
+            <p id="enrollmentMessage" style="margin-bottom: 20px; color: #cbd5e1;">You've successfully enrolled in this course!</p>
+            
+            <div id="enrollmentDetails">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <div class="enrollment-modal-footer">
+            <button type="button" class="enrollment-modal-button enrollment-modal-btn-secondary" onclick="closeEnrollmentModal()">
+                Close
+            </button>
+            <button type="button" class="enrollment-modal-button enrollment-modal-btn-primary" onclick="goToCourse()">
+                Start Learning
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const courseId = @Model.Id;
+    let currentCourseId = courseId;
+
+    document.getElementById('enrollmentForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        try {
+            const formData = new FormData(this);
+            const response = await fetch('@Url.Action("Toggle", "Enrollment")', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.success && data.action === 'showConfirmation') {
+                currentCourseId = data.courseId;
+                
+                // Fetch confirmation details
+                const confirmResponse = await fetch('@Url.Action("Confirmation", "Enrollment")?courseId=' + data.courseId);
+                const confirmData = await confirmResponse.json();
+
+                if (!confirmData.error) {
+                    displayConfirmationModal(confirmData);
+                }
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+
+    function displayConfirmationModal(data) {
+        const detailsHtml = `
+            <div class="enrollment-modal-detail">
+                <span class="enrollment-modal-detail-label">Course</span>
+                <span class="enrollment-modal-detail-value">${data.courseName}</span>
+            </div>
+            <div class="enrollment-modal-detail">
+                <span class="enrollment-modal-detail-label">Amount</span>
+                <span class="enrollment-modal-detail-value">${data.amount ? 'EGP ' + data.amount.toFixed(2) : 'Free'}</span>
+            </div>
+            <div class="enrollment-modal-detail">
+                <span class="enrollment-modal-detail-label">Transaction ID</span>
+                <span class="enrollment-modal-detail-value" style="font-size: 12px;">${data.transactionId}</span>
+            </div>
+        `;
+
+        document.getElementById('enrollmentDetails').innerHTML = detailsHtml;
+        document.getElementById('enrollmentModalOverlay').classList.add('show');
+    }
+
+    function closeEnrollmentModal() {
+        document.getElementById('enrollmentModalOverlay').classList.remove('show');
+    }
+
+    function goToCourse() {
+        window.location.href = '@Url.Action("Index", "Dashboard")';
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('enrollmentModalOverlay').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeEnrollmentModal();
+        }
+    });
+
+    // Original chapter toggle functionality
+    document.querySelectorAll('.chapter-header').forEach(function(h) {
+        h.addEventListener('click', function() {
+            var lessons = h.nextElementSibling;
+            h.classList.toggle('open');
+            h.setAttribute('aria-expanded', h.classList.contains('open'));
+            if (lessons) lessons.classList.toggle('open');
+        });
+    });
+</script>
+}

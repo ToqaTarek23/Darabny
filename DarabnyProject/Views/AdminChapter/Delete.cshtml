@@ -1,0 +1,17 @@
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model DarabnyProject.Models.Chapter
+<div class="container py-4">
+    <h2>@Model.Name</h2>
+    <p><strong>Course:</strong> @(Model.Course?.Name ?? "-")</p>
+    <div class="alert alert-danger">
+        Are you sure you want to delete this chapter? All its lessons will also be deleted.
+    </div>
+    <div class="d-flex gap-2">
+        <form method="post">
+            <input type="submit" value="Yes, Delete" class="btn btn-danger" />
+        </form>
+        <a class="btn btn-secondary" href="/admin/chapters">Cancel</a>
+    </div>
+</div>
